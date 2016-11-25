@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   include ErrorSerializer
-  skip_before_action :authenticate, only: [:create]
+  skip_before_action :authenticate_user, only: [:create]
   def index
     render json: User.all
   end
@@ -26,4 +26,3 @@ class UsersController < ApplicationController
 
 
 end
-
