@@ -69,12 +69,7 @@ Rails.application.configure do
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
-  config.action_dispatch.default_headers = {
-    'Access-Control-Allow-Headers' => 'Origin, X-Requested-With, Content-Type, Accept, Authorization',
-    'Access-Control-Allow-Origin' => '*',
-    'Access-Control-Request-Method' => '*',
-    'X-Frame-Options' => 'ALLOWALL'
-  }
+
 
   if ENV["RAILS_LOG_TO_STDOUT"].present?
     logger           = ActiveSupport::Logger.new(STDOUT)
