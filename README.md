@@ -1,8 +1,8 @@
 To start
-"""
+```
 bundle install
 rails s
-"""
+```
 
 
 
