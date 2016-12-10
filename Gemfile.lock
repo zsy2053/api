@@ -46,6 +46,7 @@ GEM
     bcrypt (3.1.11)
     builder (3.2.2)
     byebug (9.0.4)
+    cancan (1.6.10)
     coderay (1.1.1)
     concurrent-ruby (1.0.2)
     erubis (2.7.0)
@@ -145,6 +146,7 @@ DEPENDENCIES
   active_model_serializers
   bcrypt (~> 3.1.7)
   byebug
+  cancan
   knock
   listen (~> 3.0.5)
   pg (~> 0.18)
@@ -157,4 +159,4 @@ DEPENDENCIES
   tzinfo-data
 
 BUNDLED WITH
-   1.11.2
+   1.12.5
