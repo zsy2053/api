@@ -1,3 +1,4 @@
 class CarSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :year, :make, :model, :km, :tran, :fuel_type, :price, :plate_num, :color
+
 end
