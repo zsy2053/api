@@ -35,7 +35,9 @@ class CarsController < ApplicationController
 
   # DELETE /cars/1
   def destroy
-    @car.destroy
+    if @car.destroy
+      render json: "Car has been deleted."
+    end
   end
 
   private
