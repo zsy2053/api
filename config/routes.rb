@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  post 'user_token' => 'user_token#create'
   resources :cars
   get '/users/current-user', to: "current_user#show"
   resources :users
