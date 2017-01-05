@@ -19,10 +19,16 @@ class UsersController < ApplicationController
     end
   end
 
+  # GET cars pertaining to user
+  def user_cars
+    @cars = Car.where(user_id: params[:id])
+    render json: @cars
+  end
+
   private
 
     def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation)
+      params.require(:user).permit(:id, :email, :password, :password_confirmation)
     end
 
 

@@ -17,7 +17,7 @@ gem 'active_model_serializers'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
+gem 'faker'
 #Use cancan for user roles
 gem 'cancan'
 

@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_secure_password
   validates :email, format: { with: /\A[^@\s]+@([^@.\s]+\.)+[^@.\s]+\z/ }, uniqueness: true
+  has_many :cars
 
   def generate_json_api_error
     json_error = {"errors": []}
@@ -10,5 +11,11 @@ class User < ApplicationRecord
       end
     end
     json_error
+  end
+
+  def User.digest(string)
+    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
+                                                  BCrypt::Engine.cost
+    BCrypt::Password.create(string, cost: cost)
   end
 end

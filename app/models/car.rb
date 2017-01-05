@@ -1,5 +1,5 @@
 class Car < ApplicationRecord
-  # belongs_to :user, presence: true
+  belongs_to :user
 
   validates :year, presence: true
   validates :make, presence: true
