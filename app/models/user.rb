@@ -1,7 +1,10 @@
 class User < ApplicationRecord
   has_secure_password
-  validates :email, format: { with: /\A[^@\s]+@([^@.\s]+\.)+[^@.\s]+\z/ }, uniqueness: true
+
   has_many :cars
+  has_many :bookings
+
+  validates :email, format: { with: /\A[^@\s]+@([^@.\s]+\.)+[^@.\s]+\z/ }, uniqueness: true
 
   def generate_json_api_error
     json_error = {"errors": []}
