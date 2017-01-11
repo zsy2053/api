@@ -1,4 +1,5 @@
 To start
+After a pull do this one time:
 ```
 bundle install
 
@@ -6,7 +7,10 @@ rails db:drop
 rails db:create
 rails db:migrate
 rails db:seed
+```
 
+Do this everytime you want to run the server:
+```
 rails s
 ```
 
