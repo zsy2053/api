@@ -3,6 +3,7 @@ class User < ApplicationRecord
 
   has_many :cars
   has_many :bookings
+  has_many :sales
 
   validates :email, format: { with: /\A[^@\s]+@([^@.\s]+\.)+[^@.\s]+\z/ }, uniqueness: true
 
