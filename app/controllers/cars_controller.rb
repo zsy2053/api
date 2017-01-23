@@ -1,6 +1,6 @@
 class CarsController < ApplicationController
   before_action :set_car, only: [:show, :update, :destroy]
-  skip_before_action :authenticate_user, only: [:show, :index, :car_search_homepage]
+  skip_before_action :authenticate_user, only: [:show, :index]
 
   # GET /cars
   def index
@@ -41,15 +41,6 @@ class CarsController < ApplicationController
     end
   end
 
-  def car_search_homepage
-    binding.pry
-    @cars = Car.where("make = ? OR model = ?", params[:search_var], params[:search_var])
-    if @cars
-      render json: @cars
-    else
-      render json: "No caras were found!"
-    end
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
