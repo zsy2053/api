@@ -1,4 +1,10 @@
 require 'Faker'
+User.create!(
+email: "zsy@199.com",
+password_digest: User.digest('Tt123456'),
+first_name: 'test',
+last_name: 'test_last'
+)
 renter = User.create!(
 email: Faker::Internet.unique.email,
 password_digest: User.digest(Faker::Name.unique.name),
@@ -33,7 +39,6 @@ admin: false
     plate_num: Faker::Number.number(7)
     )
     2.times do
-      binding.pry
       b = c.bookings.create!(
       start_date: "null",
       end_date: "null",
