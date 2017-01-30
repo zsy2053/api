@@ -1,10 +1,15 @@
 class User < ApplicationRecord
+  # Include default devise modules.
+  devise  :validatable
   has_secure_password
 
   has_many :cars
   has_many :bookings
   has_many :sales
 
+  mount_uploader :image, ImageUploader
+  validates_processing_of :image
+  validate :image_size_validation
   validates :email, format: { with: /\A[^@\s]+@([^@.\s]+\.)+[^@.\s]+\z/ }, uniqueness: true
 
   def generate_json_api_error
@@ -22,4 +27,9 @@ class User < ApplicationRecord
                                                   BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)
   end
+
+  private
+    def image_size_validation
+      errors[:image] << "should be less than 500KB" if image.size > 0.5.megabytes
+    end
 end

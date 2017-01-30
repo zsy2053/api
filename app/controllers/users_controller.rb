@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   include ErrorSerializer
-  skip_before_action :authenticate_user, only: [:create]
+  #skip_before_action :authenticate, only: [:create]
 
   def index
     render json: User.all
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:id, :email, :password, :password_confirmation)
+      params.require(:user).permit(:id, :email, :password, :password_confirmation, :gender, :age, :image)
     end
 
 

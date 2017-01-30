@@ -1,5 +1,5 @@
 class SearchQueriesController < ApplicationController
-  skip_before_action :authenticate_user, only: [:car_search_homepage]
+  #skip_before_action :authenticate_user, only: [:car_search_homepage]
 
     def car_search_homepage
       @cars = Car.where("make = ? OR model = ?", search_querie_params[:make], search_querie_params[:model])

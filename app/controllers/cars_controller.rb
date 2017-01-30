@@ -1,6 +1,6 @@
 class CarsController < ApplicationController
   before_action :set_car, only: [:show, :update, :destroy]
-  skip_before_action :authenticate_user, only: [:show, :index]
+  #skip_before_action :authenticate, only: [:show, :index]
 
   # GET /cars
   def index
@@ -50,6 +50,6 @@ class CarsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def car_params
-      params.require(:car).permit(:year, :make, :model, :km, :tran, :fuel_type, :price, :plate_num, :color, :user_id)
+      params.require(:car).permit(:year, :make, :model, :km, :tran, :fuel_type, :price, :plate_num, :color, :user_id, :image)
     end
 end

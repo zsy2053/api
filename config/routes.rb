@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :pets
+  mount_devise_token_auth_for 'User', at: 'auth'
   #User stuff
   post 'user_token' => 'user_token#create'
   resources :users
