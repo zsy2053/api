@@ -17,5 +17,7 @@ Rails.application.routes.draw do
   get '/bookings/leaser/:id' => 'bookings#leaser_bookings'
   get '/bookings/renter/:id' => 'bookings#renter_bookings'
   mount Knock::Engine => "/knock"
+
+  resources :charges
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

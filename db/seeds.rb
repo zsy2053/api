@@ -5,6 +5,12 @@ password_digest: User.digest('Tt123456'),
 first_name: 'test',
 last_name: 'test_last'
 )
+User.create!(
+email: "admin@boro.one",
+password_digest: User.digest('Password1'),
+first_name: 'Boro',
+last_name: 'Admin'
+)
 renter = User.create!(
 email: Faker::Internet.unique.email,
 password_digest: User.digest(Faker::Name.unique.name),
