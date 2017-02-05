@@ -1,7 +1,6 @@
 class User < ApplicationRecord
   # Include default devise modules.
   devise  :validatable
-  has_secure_password
 
   has_many :cars
   has_many :bookings

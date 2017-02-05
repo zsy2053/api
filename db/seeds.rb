@@ -1,19 +1,24 @@
 require 'Faker'
+@darren_password = User.digest("Tt123456")
+@password = User.digest("Password1")
 User.create!(
 email: "zsy@199.com",
-password_digest: User.digest('Tt123456'),
+password: @darren_password,
+password_confirmation: @darren_password,
 first_name: 'test',
 last_name: 'test_last'
 )
 User.create!(
 email: "admin@boro.one",
-password_digest: User.digest('Password1'),
+password: @password,
+password_confirmation: @password,
 first_name: 'Boro',
 last_name: 'Admin'
 )
 renter = User.create!(
 email: Faker::Internet.unique.email,
-password_digest: User.digest(Faker::Name.unique.name),
+password: @password,
+password_confirmation: @password,
 first_name: Faker::Name.name,
 last_name: Faker::Name.name,
 address: Faker::Address.street_address,
@@ -24,7 +29,8 @@ admin: false
 5.times do
   u = User.create!(
   email: Faker::Internet.unique.email,
-  password_digest: User.digest(Faker::Name.unique.name),
+  password: @password,
+  password_confirmation: @password,
   first_name: Faker::Name.name,
   last_name: Faker::Name.name,
   address: Faker::Address.street_address,
