@@ -19,6 +19,10 @@ class CarsController < ApplicationController
     @car = Car.new(car_params)
 
     if @car.save
+      binding.pry
+      params[:car][:image].each do |file|
+        @car.car_photos.create!(:document => file)
+      end
       render json: @car, status: :created, location: @car
     else
       render json: @car.errors, status: :unprocessable_entity

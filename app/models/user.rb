@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :sales
 
   mount_uploader :image, ImageUploader
+  
   validates_processing_of :image
   validate :image_size_validation
   validates :email, format: { with: /\A[^@\s]+@([^@.\s]+\.)+[^@.\s]+\z/ }, uniqueness: true
