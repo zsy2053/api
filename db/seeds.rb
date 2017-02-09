@@ -38,7 +38,7 @@ admin: false
   gender: "male",
   admin: false
   )
-  2.times do
+  5.times do
     c = u.cars.create!(
     color: Faker::Color.color_name,
     year: Faker::Number.between(2000,2017),
@@ -50,6 +50,11 @@ admin: false
     price: Faker::Number.between(50,200),
     plate_num: Faker::Number.number(7)
     )
+    3.times do
+      c.car_photos.create!(
+        image: File.new("./public/car.jpg")
+      )
+    end
     2.times do
       b = c.bookings.create!(
       start_date: "null",

@@ -45,6 +45,11 @@ class CarsController < ApplicationController
     end
   end
 
+  # GET cars pertaining to user
+  def user_cars
+    @cars = Car.where(user_id: params[:id])
+    render json: @cars
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -54,6 +59,6 @@ class CarsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def car_params
-      params.require(:car).permit(:year, :make, :model, :km, :tran, :fuel_type, :price, :plate_num, :color, :user_id, :image)
+      params.require(:car).permit(:year, :make, :model, :km, :tran, :fuel_type, :price, :plate_num, :color, :user_id) #, :image)
     end
 end

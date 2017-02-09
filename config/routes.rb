@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   # Get Cars
   resources :cars
-  get 'users/cars/:id' => 'users#user_cars'
+  get '/cars/user/:id' => 'cars#user_cars'
   post 'search_queries/car_search_homepage' => 'search_queries#car_search_homepage'
   #Get sales
   get '/sales/leaser/:id' => 'sales#user_sales'
