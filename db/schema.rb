@@ -25,6 +25,13 @@ ActiveRecord::Schema.define(version: 20170211191146) do
     t.integer  "leaser_id"
   end
 
+  create_table "car_photos", force: :cascade do |t|
+    t.string   "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "car_id"
+  end
+
   create_table "cars", force: :cascade do |t|
     t.integer  "year"
     t.string   "make"
@@ -38,14 +45,6 @@ ActiveRecord::Schema.define(version: 20170211191146) do
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "pets", force: :cascade do |t|
-    t.string   "name"
-    t.text     "description"
-    t.string   "image"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
   end
 
   create_table "sales", force: :cascade do |t|
