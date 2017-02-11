@@ -7,12 +7,12 @@ class BookingsController < ApplicationController
 
   def leaser_bookings
     @bookings = Booking.where(leaser_id: params[:id])
-    render json: {leaser_bookings: @bookings}
+    render json: {leaser_bookings: @bookings}, :root => false
   end
 
   def renter_bookings
     @bookings = Booking.where(renter_id: params[:id])
-    render json: {renter_bookings: @bookings}
+    render json: {renter_bookings: @bookings}, :root => false
   end
 
 end
