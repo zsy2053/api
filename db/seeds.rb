@@ -6,14 +6,16 @@ email: "zsy@199.com",
 password: @darren_password,
 password_confirmation: @darren_password,
 first_name: 'test',
-last_name: 'test_last'
+last_name: 'test_last',
+image: ''
 )
 User.create!(
 email: "admin@boro.one",
 password: @password,
 password_confirmation: @password,
 first_name: 'Boro',
-last_name: 'Admin'
+last_name: 'Admin',
+image: ''
 )
 renter = User.create!(
 email: Faker::Internet.unique.email,
@@ -24,7 +26,8 @@ last_name: Faker::Name.name,
 address: Faker::Address.street_address,
 age: Faker::Number.between(21,99),
 gender: "male",
-admin: false
+admin: false,
+image: ''
 )
 5.times do
   u = User.create!(
@@ -36,7 +39,8 @@ admin: false
   address: Faker::Address.street_address,
   age: Faker::Number.between(21,99),
   gender: "male",
-  admin: false
+  admin: false,
+  image: ''
   )
   5.times do
     c = u.cars.create!(
