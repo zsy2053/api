@@ -17,14 +17,16 @@ email: "zsy@199.com",
 password: @darren_password,
 password_confirmation: @darren_password,
 first_name: 'test',
-last_name: 'test_last'
+last_name: 'test_last',
+address: '155 Yorkville Ave'
 )
 User.create!(
 email: "admin@boro.one",
 password: @password,
 password_confirmation: @password,
 first_name: 'Boro',
-last_name: 'Admin'
+last_name: 'Admin',
+address: '155 Yorkville Ave'
 )
 renter = User.create!(
 email: Faker::Internet.unique.email,
