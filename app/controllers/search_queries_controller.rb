@@ -1,19 +1,19 @@
 class SearchQueriesController < ApplicationController
-  #skip_before_action :authenticate_user, only: [:car_search_homepage]
+  # skip_before_action :authenticate_user, only: [:car_search_homepage]
 
-    def car_search_homepage
-      @cars = Car.where("make = ? OR model = ?", search_querie_params[:make], search_querie_params[:model])
-      if @cars != []
-        render json: @cars
-      else
-        render json: { errors: "No cars were found!" }
-      end
+  def car_search_homepage
+    @cars = Car.where("make = ? OR model = ?", params[:make], params[:model])
+    if @cars != []
+      render json: @cars, :root => false
+    else
+      render json: { errors: "No cars were found!" }
     end
+  end
 
-    private
+  private
 
-    def search_querie_params
-      params.require(:search_params).permit(:make)
-    end
+  def search_querie_params
+    params.require(:search_params).permit(:make)
+  end
 
 end

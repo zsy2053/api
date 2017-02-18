@@ -48,6 +48,7 @@ class CarsController < ApplicationController
   # GET cars pertaining to user
   def user_cars
     @cars = Car.where(user_id: params[:id])
+    @bookings = Booking.select(:car_id).where(renter_id: params[:id])
     render json: @cars
   end
 

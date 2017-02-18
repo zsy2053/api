@@ -1,6 +1,17 @@
 require 'Faker'
+
 @darren_password = User.digest("Tt123456")
 @password = User.digest("Password1")
+@user_id = [2,3,4,5]
+
+def get_renter_id(l,r)
+  if l == r
+    return r+1
+  else
+    return r
+  end
+end
+
 User.create!(
 email: "zsy@199.com",
 password: @darren_password,
@@ -42,7 +53,7 @@ admin: false
     c = u.cars.create!(
     color: Faker::Color.color_name,
     year: Faker::Number.between(2000,2017),
-    make: Faker::Vehicle.manufacture,
+    make: "BMW",
     model: Faker::StarWars.vehicle,
     km: Faker::Number.between(1000,100000),
     tran: "manual",
@@ -72,7 +83,7 @@ admin: false
       total_price: 130,
       booking_id: b.id,
       leaser_id: u.id,
-      renter_id: renter.id
+      renter_id: get_renter_id(u.id, @user_id.sample)
       )
     end
   end
