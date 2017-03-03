@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   include ErrorSerializer
-  has_secure_password
+  
 
   #skip_before_action :authenticate, only: [:create]
 
