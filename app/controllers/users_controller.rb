@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
   include ErrorSerializer
-  has_secure_password
 
-  #skip_before_action :authenticate, only: [:create]
+  before_action :authenticate_user, except: [:create]
 
   def index
     render json: User.all
