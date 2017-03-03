@@ -9,7 +9,8 @@ class Car < ApplicationRecord
   validates :km, presence: true
   validates :tran, presence: true
   validates :fuel_type, presence: true
-  validates :price, presence: true
+  validates :weekday_price, presence: true
+  validates :weekend_price, presence: true
   validates :plate_num, presence: true
   validates :color, presence: true
 end

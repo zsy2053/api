@@ -52,6 +52,8 @@ admin: false
   admin: false
   )
   5.times do
+    @weekday_price = Faker::Number.between(50,90)
+    @weekend_price = @weekday_price * 1.13
     c = u.cars.create!(
     color: Faker::Color.color_name,
     year: Faker::Number.between(2000,2017),
@@ -60,7 +62,8 @@ admin: false
     km: Faker::Number.between(1000,100000),
     tran: "manual",
     fuel_type: "gas",
-    price: Faker::Number.between(50,200),
+    weekend_price: @weekend_price,
+    weekday_price: @weekday_price,
     plate_num: Faker::Number.number(7)
     )
     3.times do
