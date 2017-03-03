@@ -17,4 +17,5 @@
 .byebug_history
 
 
-# Ignore jpegs
+# Ignore uploaded photos
+/public/uploads

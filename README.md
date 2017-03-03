@@ -13,7 +13,7 @@ Do this everytime you want to run the server:
 ```
 rails s
 ```
-email auth devise 
+email auth devise
 
 
 JWT INFO
