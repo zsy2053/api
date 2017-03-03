@@ -1,13 +1,25 @@
 require 'Faker'
+
 @darren_password = User.digest("Tt123456")
 @password = User.digest("Password1")
+@user_id = [2,3,4,5]
+
+def get_renter_id(l,r)
+  if l == r
+    return r+1
+  else
+    return r
+  end
+end
+
 User.create!(
 email: "zsy@199.com",
 password: @darren_password,
 password_confirmation: @darren_password,
 first_name: 'test',
 last_name: 'test_last',
-image: ''
+image: '',
+address: '155 Yorkville Ave',
 )
 User.create!(
 email: "admin@boro.one",
@@ -15,7 +27,8 @@ password: @password,
 password_confirmation: @password,
 first_name: 'Boro',
 last_name: 'Admin',
-image: ''
+image: '',
+address: '155 Yorkville Ave',
 )
 renter = User.create!(
 email: Faker::Internet.unique.email,
@@ -43,15 +56,18 @@ image: ''
   image: ''
   )
   5.times do
+    @weekday_price = Faker::Number.between(50,90)
+    @weekend_price = @weekday_price * 1.13
     c = u.cars.create!(
     color: Faker::Color.color_name,
     year: Faker::Number.between(2000,2017),
-    make: Faker::Vehicle.manufacture,
+    make: "BMW",
     model: Faker::StarWars.vehicle,
     km: Faker::Number.between(1000,100000),
     tran: "manual",
     fuel_type: "gas",
-    price: Faker::Number.between(50,200),
+    weekend_price: @weekend_price,
+    weekday_price: @weekday_price,
     plate_num: Faker::Number.number(7)
     )
     3.times do
@@ -76,7 +92,7 @@ image: ''
       total_price: 130,
       booking_id: b.id,
       leaser_id: u.id,
-      renter_id: renter.id
+      renter_id: get_renter_id(u.id, @user_id.sample)
       )
     end
   end

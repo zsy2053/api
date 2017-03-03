@@ -48,6 +48,7 @@ class CarsController < ApplicationController
   # GET cars pertaining to user
   def user_cars
     @cars = Car.where(user_id: params[:id])
+    @bookings = Booking.select(:car_id).where(renter_id: params[:id])
     render json: @cars
   end
 
@@ -59,6 +60,6 @@ class CarsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def car_params
-      params.require(:car).permit(:year, :make, :model, :km, :tran, :fuel_type, :price, :plate_num, :color, :user_id) #, :image)
+      params.require(:car).permit(:weekend_price, :weekday_price, :year, :make, :model, :km, :tran, :fuel_type, :price, :plate_num, :color, :user_id) #, :image)
     end
 end
