@@ -30,6 +30,10 @@ class User < ApplicationRecord
     BCrypt::Password.create(string, cost: cost)
   end
 
+  def name
+    self.first_name + self.last_name
+  end
+
   private
     def image_size_validation
       errors[:image] << "should be less than 500KB" if image.size > 0.5.megabytes

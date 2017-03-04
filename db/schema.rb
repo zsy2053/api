@@ -25,6 +25,17 @@ ActiveRecord::Schema.define(version: 20170304201413) do
     t.integer  "leaser_id"
   end
 
+  create_table "buildings", force: :cascade do |t|
+    t.string   "address"
+    t.integer  "phone_number"
+    t.string   "city"
+    t.string   "postal_code"
+    t.string   "province"
+    t.integer  "num_units"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "car_photos", force: :cascade do |t|
     t.string   "image"
     t.datetime "created_at", null: false
