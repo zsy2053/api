@@ -1,12 +1,12 @@
-# Branch `Master` is reserved for production
+# Branch `master` is reserved for production
 
-## Use `development` while building/testing the code
+### Use `development` while building/testing the code
 
-## Never run `rails db:drop` while on master branch!
+#### Never run `rails db:drop` while on master branch! EVER!
 
-## Never merge to master without permission to do so!
+#### Ask for a code review before mergin into `master`!
 
-Initial clone of the repo
+Initial clone of the repo:
 ```
 bundle install
 
