@@ -3,8 +3,13 @@ Rails.application.routes.draw do
   mount_devise_token_auth_for 'User', at: 'auth'
   #User stuff
   post 'user_token' => 'user_token#create'
-  resources :users
-  get '/users/current-user', to: "current_user#show"
+  resources :users do
+    member do
+      get :confirm_email
+      get '/users/current-user', to: "current_user#show"
+    end
+  end
+
 
   # Get Cars
   resources :cars

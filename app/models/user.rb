@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   # Include default devise modules.
+  before_create :confirmation_token
   devise  :validatable
   has_secure_password
   has_many :cars
@@ -22,6 +23,7 @@ class User < ApplicationRecord
     json_error
   end
 
+  # Returns the hash digest of the given string.
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                   BCrypt::Engine.cost
@@ -31,5 +33,11 @@ class User < ApplicationRecord
   private
     def image_size_validation
       errors[:image] << "should be less than 500KB" if image.size > 0.5.megabytes
+    end
+
+    def confirmation_token
+      if self.confirm_token.blank?
+          self.confirm_token = SecureRandom.urlsafe_base64.to_s
+      end
     end
 end

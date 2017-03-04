@@ -1,8 +1,13 @@
 class UsersController < ApplicationController
   include ErrorSerializer
-  
 
-  #skip_before_action :authenticate, only: [:create]
+  before_action :authenticate_user, except: [:create]
+
+  def email_activate
+    self.email_confirmed = true
+    self.confirm_token = nil
+    save!(:validate => false)
+  end
 
   def index
     render json: User.all
@@ -12,9 +17,23 @@ class UsersController < ApplicationController
     render json: User.find(params[:id])
   end
 
+  def confirm_email
+    user = User.find_by_confirm_token(params[:id])
+    if user
+      user.email_activate
+      flash[:success] = "Welcome to the Sample App! Your email has been confirmed.
+      Please sign in to continue."
+      redirect_to signin_url
+    else
+      flash[:error] = "Sorry. User does not exist"
+      redirect_to root_url
+    end
+end
+
   def create
     user = User.new(user_params)
     if user.save
+      UserMailer.registration_confirmation(user).deliver
       render json: {user: user}, status: 200
     else
       render json: ErrorSerializer.serialize(user.errors), status: 422
