@@ -3,12 +3,6 @@ class UsersController < ApplicationController
 
   before_action :authenticate_user, except: [:create]
 
-  def email_activate
-    self.email_confirmed = true
-    self.confirm_token = nil
-    save!(:validate => false)
-  end
-
   def index
     render json: User.all
   end
@@ -16,19 +10,6 @@ class UsersController < ApplicationController
   def show
     render json: User.find(params[:id])
   end
-
-  def confirm_email
-    user = User.find_by_confirm_token(params[:id])
-    if user
-      user.email_activate
-      flash[:success] = "Welcome to the Sample App! Your email has been confirmed.
-      Please sign in to continue."
-      redirect_to signin_url
-    else
-      flash[:error] = "Sorry. User does not exist"
-      redirect_to root_url
-    end
-end
 
   def create
     user = User.new(user_params)
@@ -47,6 +28,26 @@ end
     else
       render json: ErrorSerializer.serialize(user.errors)
     end
+  end
+
+  # EMAIL
+  def confirm_email
+    user = User.find_by_confirm_token(params[:id])
+    if user
+      user.email_activate
+      flash[:success] = "Welcome to the Sample App! Your email has been confirmed.
+      Please sign in to continue."
+      render json: flash
+    else
+      flash[:error] = "Sorry. User does not exist"
+      render json: flash
+    end
+  end
+
+  def email_activate
+    self.email_confirmed = true
+    self.confirm_token = nil
+    save!(:validate => false)
   end
 
   private
