@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    binding.pry
     render json: User.find(params[:id])
   end
 
@@ -53,7 +54,7 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:id, :email, :password, :password_confirmation, :gender, :age, :image)
+      params.require(:user).permit(:id, :email, :password, :password_confirmation, :gender, :age, :image, :first_name, :last_name)
     end
 
 
