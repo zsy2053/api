@@ -1,11 +1,10 @@
 class ChargesController < ApplicationController
   before_action :authenticate_user
-  
+
   def new
   end
 
   def create
-    binding.pry
     # Amount in cents
     @amount = params[:param][:amount]
     @description = params[:param][:description]

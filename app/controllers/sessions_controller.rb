@@ -6,13 +6,13 @@ class SessionsController < ApplicationController
           sign_in user
         render json: user
       else
-        flash.now[:error] = 'Please activate your account by following the
+        @confirm_activation = 'Please activate your account by following the
         instructions in the account confirmation email you received to proceed'
-        render json: flash
+        render json: @confirm_activation
       end
       else
-        flash.now[:error] = 'Invalid email/password combination' # Not quite right!
-        render json: flash
+        @error = 'Invalid email/password combination' # Not quite right!
+        render json: @error
       end
   end
 

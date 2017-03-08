@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   include ErrorSerializer
-
   before_action :authenticate_user, except: [:create]
 
   def index
@@ -8,7 +7,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    binding.pry
     render json: User.find(params[:id])
   end
 
@@ -36,12 +34,9 @@ class UsersController < ApplicationController
     user = User.find_by_confirm_token(params[:id])
     if user
       user.email_activate
-      flash[:success] = "Welcome to the Sample App! Your email has been confirmed.
-      Please sign in to continue."
-      render json: flash
+      render json: "Sign in to confirm email!"
     else
-      flash[:error] = "Sorry. User does not exist"
-      render json: flash
+      render json: "User doesn't exist"
     end
   end
 
