@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     user = User.new(user_params)
     if user.save
       UserMailer.registration_confirmation(user).deliver
-      render json: {user: user}, status: 200
+      render json: {user: user}, status: 200, :root => false
     else
       render json: ErrorSerializer.serialize(user.errors), status: 422
     end
