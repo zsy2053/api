@@ -30,7 +30,7 @@ class User < ApplicationRecord
     BCrypt::Password.create(string, cost: cost)
   end
 
-  def name
+  def full_name
     self.first_name + " " + self.last_name
   end
 
