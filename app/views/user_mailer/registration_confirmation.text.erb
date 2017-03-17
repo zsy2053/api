@@ -2,4 +2,4 @@ Hi <%= @user.first_name.capitalize %>,
 
 Thanks for registering! To confirm your registration click the URL below.
 
-<%= confirm_email_user_url(@user.confirm_token) %>
+<%= @user.register_complete ? nil : confirm_email_user_url(@user.confirm_token) %>
