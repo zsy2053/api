@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   include ErrorSerializer
-  before_action :authenticate_user, except: [:create]
+  before_action :authenticate_user, except: [:create, :confirm_email, :email_activate]
 
   def index
     render json: User.all
