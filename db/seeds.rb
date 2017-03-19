@@ -73,7 +73,8 @@ end
         fuel_type: "gas",
         weekend_price: @weekend_price,
         weekday_price: @weekday_price,
-        plate_num: Faker::Number.number(7)
+        plate_num: Faker::Number.number(7),
+        description: Faker::Hipster.paragraph
       )
       3.times do
         c.car_photos.create!(
