@@ -81,26 +81,42 @@ end
           image: File.new("./public/car.jpg")
         )
       end
-      2.times do
-        b = c.bookings.create!(
-          start_date: "null",
-          end_date: "null",
-          leaser_id: u.id,
-          renter_id: renter.id
-        )
-        s = Sale.create!(
-          price: 25,
-          deposit: 20,
-          final_payment: 110,
-          insurance_fee: 20,
-          number_nights: 4,
-          taxes: 10,
-          total_price: 130,
-          booking_id: b.id,
-          leaser_id: u.id,
-          renter_id: get_renter_id(u.id, @user_id.sample)
-        )
-      end
+      b1 = c.bookings.create!(
+        start_date: DateTime.now,
+        end_date: DateTime.now + (1/24.0),
+        leaser_id: u.id,
+        renter_id: renter.id
+      )
+      b2 = c.bookings.create!(
+        start_date: DateTime.now + (1/24.0),
+        end_date: DateTime.now + (2/24.0),
+        leaser_id: u.id,
+        renter_id: renter.id
+      )
+      s1 = Sale.create!(
+        price: 25,
+        deposit: 20,
+        final_payment: 110,
+        insurance_fee: 20,
+        number_nights: 4,
+        taxes: 10,
+        total_price: 130,
+        booking_id: b1.id,
+        leaser_id: u.id,
+        renter_id: get_renter_id(u.id, @user_id.sample)
+      )
+      s2 = Sale.create!(
+        price: 25,
+        deposit: 20,
+        final_payment: 110,
+        insurance_fee: 20,
+        number_nights: 4,
+        taxes: 10,
+        total_price: 130,
+        booking_id: b2.id,
+        leaser_id: u.id,
+        renter_id: get_renter_id(u.id, @user_id.sample)
+      )
     end
   end
 end

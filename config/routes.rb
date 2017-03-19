@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get '/sales/leaser/:id' => 'sales#user_sales'
 
   # Get Bookings
+  get '/bookings/car/:id' => 'bookings#car_bookings'
   get '/bookings/leaser/:id' => 'bookings#leaser_bookings'
   get '/bookings/renter/:id' => 'bookings#renter_bookings'
   mount Knock::Engine => "/knock"

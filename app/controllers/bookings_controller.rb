@@ -1,5 +1,6 @@
 class BookingsController < ApplicationController
-  before_action :authenticate_user
+  # TODO: remove except
+  before_action :authenticate_user, except: [:car_bookings]
 
   #TODO:If the user has more than 100 bookings it will send out multiple arrays
   #data{array: {...}, array2{...}} This is sort of a bug and will cause the
@@ -15,8 +16,13 @@ class BookingsController < ApplicationController
     else
       render json: @booking.errors, status: :unprocessable_entity
     end
-    end
+  end
 
+  # /bookings/car/[the id of the car]
+  def car_bookings
+    @bookings = Booking.where(car_id: params[:id])
+    render json: @bookings, :root => false
+  end
 
   def leaser_bookings
     @bookings = Booking.where(leaser_id: params[:id])
