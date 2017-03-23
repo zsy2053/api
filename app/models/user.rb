@@ -6,9 +6,11 @@ class User < ApplicationRecord
   has_many :cars
   has_many :bookings
   has_many :sales
+  has_many :id_photos
 
   mount_uploader :image, ImageUploader
   mount_uploader :avatar, AvatarUploader
+
   validates_processing_of :image
   validate :image_size_validation
   validates :email, format: { with: /\A[^@\s]+@([^@.\s]+\.)+[^@.\s]+\z/ }, uniqueness: true

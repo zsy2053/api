@@ -51,14 +51,13 @@ end
     u = User.create!(
       email: @temp_email,
       password: @password,
-      # password_confirmation: @password,
       first_name: Faker::Name.name,
       last_name: Faker::Name.name,
       address: Faker::Address.street_address,
       age: Faker::Number.between(21,99),
       gender: "male",
       admin: false,
-      image: ''
+      image: File.new("./public/user.jpg")
     )
     5.times do
       @weekday_price = Faker::Number.between(50,90)
