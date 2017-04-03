@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :bookings
   has_many :sales
   has_many :id_photos
+  has_many :tools
 
   mount_uploader :image, ImageUploader
   mount_uploader :avatar, AvatarUploader

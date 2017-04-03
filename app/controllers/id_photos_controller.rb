@@ -6,7 +6,9 @@ class IdPhotosController < ApplicationController
       render json: {idPhoto: id_photo}, status: 200, :root => false
     else
       render json: ErrorSerializer.serialize(user.errors), status: 422
-
+    end
+  end
+  
   private
 
   def id_photo_params

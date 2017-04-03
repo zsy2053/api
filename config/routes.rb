@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :tools
   #User stuff
   post 'user_token' => 'user_token#create'
 
