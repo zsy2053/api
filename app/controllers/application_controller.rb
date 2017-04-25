@@ -10,6 +10,7 @@ class ApplicationController < ActionController::API
          unless instance_variable_defined?(memoization_var_name)
            current =
              begin
+              #  binding.pry
                Knock::AuthToken.new(token: token).entity_for(entity_class)
              rescue => e
                puts "====="

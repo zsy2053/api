@@ -18,11 +18,11 @@ Rails.application.routes.draw do
   get '/sales/leaser/:id' => 'sales#user_sales'
 
   # Get Bookings
+  post '/bookings' => 'bookings#create'
   get '/bookings/car/:id' => 'bookings#car_bookings'
   get '/bookings/leaser/:id' => 'bookings#leaser_bookings'
   get '/bookings/renter/:id' => 'bookings#renter_bookings'
   mount Knock::Engine => "/knock"
 
   resources :charges
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
