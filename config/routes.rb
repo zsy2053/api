@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :tools
   #User stuff
   post 'user_token' => 'user_token#create'
 
@@ -9,6 +8,9 @@ Rails.application.routes.draw do
       get '/users/current-user', to: "current_user#show"
     end
   end
+
+  # Get Tools
+  resources :tools
 
   # Get Cars
   resources :cars
@@ -24,5 +26,9 @@ Rails.application.routes.draw do
   get '/bookings/renter/:id' => 'bookings#renter_bookings'
   mount Knock::Engine => "/knock"
 
+  # Get notifications
+  post '/notifications' => 'notifications#create'
+  get '/notifications' => 'notifications#index'
+  get '/notifications/user/:id' => 'notifications#userNotifications'
   resources :charges
 end

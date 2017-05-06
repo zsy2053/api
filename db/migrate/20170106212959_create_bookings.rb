@@ -6,6 +6,7 @@ class CreateBookings < ActiveRecord::Migration[5.0]
       t.integer :car_id
       t.integer :sale_id
       t.integer :user_id
+      t.integer :tool_id
       t.timestamps
     end
   end

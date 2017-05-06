@@ -1,11 +1,10 @@
-class ToolController < ApplicationController
+class ToolsController < ApplicationController
   before_action :set_tool, only: [:show, :update, :destroy]
 
   # GET /tool
   def index
     @tool = Tool.all
-
-    render json: @tool
+    render json: @tool, :root => false
   end
 
   # GET /tool/1

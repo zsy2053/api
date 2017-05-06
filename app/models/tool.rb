@@ -4,7 +4,7 @@ class Tool < ApplicationRecord
   has_many :bookings
   has_many :tool_photos
 
-  validates :type, presence: true
+  validates :tool_type, presence: true
   validates :category, presence: true
   validates :price, presence: true
   validates :brand, presence: true

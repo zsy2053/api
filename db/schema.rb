@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170403014633) do
+ActiveRecord::Schema.define(version: 20170503225026) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20170403014633) do
     t.string "start_date"
     t.string "end_date"
     t.integer "car_id"
+    t.integer "tool_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "renter_id"
@@ -72,6 +73,16 @@ ActiveRecord::Schema.define(version: 20170403014633) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "booking_id"
+    t.string "sender"
+    t.string "title"
+    t.string "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "sales", id: :serial, force: :cascade do |t|
     t.integer "taxes"
     t.integer "price"
@@ -88,18 +99,21 @@ ActiveRecord::Schema.define(version: 20170403014633) do
   end
 
   create_table "tool_photos", id: :serial, force: :cascade do |t|
+    t.string "image"
+    t.integer "tool_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "tools", id: :serial, force: :cascade do |t|
-    t.string "type"
+    t.string "tool_type"
     t.string "category"
     t.integer "price"
     t.string "brand"
     t.text "description"
     t.string "condition"
     t.string "location"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

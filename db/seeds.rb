@@ -62,22 +62,18 @@ end
     5.times do
       @weekday_price = Faker::Number.between(50,90)
       @weekend_price = @weekday_price * 1.13
-      c = u.cars.create!(
-        color: Faker::Color.color_name,
-        year: Faker::Number.between(2000,2017),
-        make: "BMW",
-        model: Faker::StarWars.vehicle,
-        km: Faker::Number.between(1000,100000),
-        tran: "manual",
-        fuel_type: "gas",
-        weekend_price: @weekend_price,
-        weekday_price: @weekday_price,
-        plate_num: Faker::Number.number(7),
-        description: Faker::Hipster.paragraph
+      c = u.tools.create!(
+        tool_type: "drill",
+        category: "powertools",
+        price: @weekday_price,
+        brand: "Dewalt",
+        description: Faker::Lorem.paragraph,
+        condition: "good",
+        location: Faker::Address.street_address + "," + Faker::Address.city + "," + Faker::Address.country
       )
       3.times do
-        c.car_photos.create!(
-          image: File.new("./public/car.jpg")
+        c.tool_photos.create!(
+          image: File.new("./public/download.jpg")
         )
       end
       b1 = c.bookings.create!(
