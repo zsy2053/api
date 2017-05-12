@@ -1,13 +1,17 @@
 class User < ApplicationRecord
   # Include default devise modules.
+  before_create :confirmation_token
   devise  :validatable
   has_secure_password
   has_many :cars
   has_many :bookings
   has_many :sales
+  has_many :id_photos
+  has_many :tools
 
   mount_uploader :image, ImageUploader
   mount_uploader :avatar, AvatarUploader
+
   validates_processing_of :image
   validate :image_size_validation
   validates :email, format: { with: /\A[^@\s]+@([^@.\s]+\.)+[^@.\s]+\z/ }, uniqueness: true
@@ -29,12 +33,19 @@ class User < ApplicationRecord
     BCrypt::Password.create(string, cost: cost)
   end
 
-  def name
-    self.first_name + self.last_name
+  def full_name
+    "#{self.first_name} #{self.last_name}"
   end
 
   private
+
     def image_size_validation
       errors[:image] << "should be less than 500KB" if image.size > 0.5.megabytes
+    end
+
+    def confirmation_token
+      if self.confirm_token.blank?
+          self.confirm_token = SecureRandom.urlsafe_base64.to_s
+      end
     end
 end

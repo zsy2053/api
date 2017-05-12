@@ -17,6 +17,9 @@ rails db:seed
 
 After a pull:
 ```
+rails s
+```
+email auth devise
 bundle install
 
 rails db:migrate

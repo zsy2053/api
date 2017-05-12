@@ -10,6 +10,7 @@ gem 'puma', '~> 3.0'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.0'
 # Use Redis adapter to run Action Cable in production
+gem 'rails-erd'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
@@ -24,7 +25,7 @@ gem 'cancan'
 gem 'devise_token_auth'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
-gem 'knock'
+gem 'knock', '~> 1.4.2'
 # gem 'knock', git: "git@github.com:StevenNunez/knock.git", branch: "pluggable-resource"
 gem 'carrierwave', '~> 0.10.0'
 gem 'mini_magick', '~> 4.3'

@@ -1,11 +1,17 @@
 Rails.application.routes.draw do
-  resources :pets
-  mount_devise_token_auth_for 'User', at: 'auth'
   #User stuff
   post 'user_token' => 'user_token#create'
-  resources :users
-  get '/users/current-user', to: "current_user#show"
 
+  resources :users do
+    member do
+      get :confirm_email
+      get '/users/current-user', to: "current_user#show"
+    end
+  end
+
+  # Get Tools
+  resources :tools
+  get '/tools/search_tools' => 'tools#search_tools'
   # Get Cars
   resources :cars
   get '/cars/user/:id' => 'cars#user_cars'
@@ -14,10 +20,18 @@ Rails.application.routes.draw do
   get '/sales/leaser/:id' => 'sales#user_sales'
 
   # Get Bookings
+  post '/bookings' => 'bookings#create'
+  get '/bookings/tool/:id' => 'bookings#tool_bookings'
   get '/bookings/leaser/:id' => 'bookings#leaser_bookings'
   get '/bookings/renter/:id' => 'bookings#renter_bookings'
   mount Knock::Engine => "/knock"
 
+  # Get notifications
+  post '/notifications' => 'notifications#create'
+  get '/notifications' => 'notifications#index'
+  get '/notifications/user/:id' => 'notifications#userNotifications'
+
+  # Charges
   resources :charges
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  post 'charges/stripe_activate' => 'charges#stripe_activate'
 end
