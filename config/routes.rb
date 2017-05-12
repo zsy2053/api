@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   # Get Tools
   resources :tools
-
+  get '/tools/search_tools' => 'tools#search_tools'
   # Get Cars
   resources :cars
   get '/cars/user/:id' => 'cars#user_cars'
@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   # Get Bookings
   post '/bookings' => 'bookings#create'
-  get '/bookings/car/:id' => 'bookings#car_bookings'
+  get '/bookings/tool/:id' => 'bookings#tool_bookings'
   get '/bookings/leaser/:id' => 'bookings#leaser_bookings'
   get '/bookings/renter/:id' => 'bookings#renter_bookings'
   mount Knock::Engine => "/knock"
@@ -30,5 +30,8 @@ Rails.application.routes.draw do
   post '/notifications' => 'notifications#create'
   get '/notifications' => 'notifications#index'
   get '/notifications/user/:id' => 'notifications#userNotifications'
+
+  # Charges
   resources :charges
+  post 'charges/stripe_activate' => 'charges#stripe_activate'
 end

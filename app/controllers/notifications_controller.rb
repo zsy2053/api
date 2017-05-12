@@ -1,5 +1,5 @@
 class NotificationsController < ApplicationController
-  before_action :authenticate_user
+  before_action :authenticate 
 
   def index
     @notifications = Notification.all
@@ -18,7 +18,7 @@ class NotificationsController < ApplicationController
 
   def userNotifications
     @notifications = Notification.where(user_id: params[:id])
-    render json: @notifications, :root => false
+    render json: @notifications, include: 'booking.**', :root => false
   end
 
   private

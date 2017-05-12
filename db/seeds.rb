@@ -69,6 +69,7 @@ end
         brand: "Dewalt",
         description: Faker::Lorem.paragraph,
         condition: "good",
+        power: ['Electric','Gas'].sample,
         location: Faker::Address.street_address + "," + Faker::Address.city + "," + Faker::Address.country
       )
       3.times do

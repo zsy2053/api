@@ -1,5 +1,7 @@
 class ToolsController < ApplicationController
   before_action :set_tool, only: [:show, :update, :destroy]
+  before_action :authenticate
+
 
   # GET /tool
   def index
@@ -40,6 +42,12 @@ class ToolsController < ApplicationController
     @tool.destroy
   end
 
+  def search_tools
+    binding.pry
+    @tool = Tool.where(category: params[:tool][:search].order(created_at: :desc))
+    render json: @tool
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_tool
@@ -48,6 +56,6 @@ class ToolsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def tool_params
-      params.fetch(:tool, {})
+      params.require(:tool).permit(:price, :tool_type, :category, :brand, :description, :condition, :location, :user_id)
     end
 end

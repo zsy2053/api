@@ -24,10 +24,9 @@ class BookingsController < ApplicationController
     end
   end
 
-  # /bookings/car/[the id of the car]
-  #TODO: rename
-  def car_bookings
-    @bookings = Booking.where(car_id: params[:id])
+  # /bookings/tool/[the id of the car]
+  def tool_bookings
+    @bookings = Booking.where(tool_id: params[:id])
     render json: @bookings, :root => false
   end
 

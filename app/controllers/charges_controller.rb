@@ -1,23 +1,16 @@
 class ChargesController < ApplicationController
-  before_action :authenticate_user
-
-  def new
-  end
+  before_action :authenticate
 
   def create
-    # Amount in cents
+    # Create a Stripe user
+    binding.pry
     @amount = params[:param][:amount]
     @description = params[:param][:description]
     @email = params[:param][:user_email]
-    @source = params[:param][:token][:id]
+    @token = params[:param][:token][:id]
     @date = params[:param][:date]
     @cvc = params[:param][:cvc]
     @cardNumber = params[:param][:cardNumber]
-
-    customer = Stripe::Customer.create(
-      :email => @email,
-      :source  => @source
-    )
 
     charge = Stripe::Charge.create(
       :customer    => customer.id,
@@ -31,5 +24,15 @@ class ChargesController < ApplicationController
 
   rescue Stripe::CardError => e
     render json: {errors: e.message}
+  end
+
+  def stripe_activate
+    @user = User.find(params[:id])
+    binding.pry
+    customer = Stripe::Customer.create(
+      :email => params[@User.email],
+      :source  => @token
+    )
+    binding.pry
   end
 end
