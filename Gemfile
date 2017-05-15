@@ -29,6 +29,7 @@ gem 'knock', '~> 1.4.2'
 # gem 'knock', git: "git@github.com:StevenNunez/knock.git", branch: "pluggable-resource"
 gem 'carrierwave', '~> 0.10.0'
 gem 'mini_magick', '~> 4.3'
+
 group :development, :test do
   gem 'pry-byebug'
 end
