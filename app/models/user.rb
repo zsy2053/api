@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   # Include default devise modules.
-  before_create :confirmation_token
+  # before_create :confirmation_token
   devise  :validatable
   has_secure_password
   has_many :cars

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   #User stuff
   post 'user_token' => 'user_token#create'
-
+  post '/quickSignup' => 'users#quickSignup'
   resources :users do
     member do
       get :confirm_email
