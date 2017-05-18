@@ -17,7 +17,7 @@ class CarsController < ApplicationController
     @car = Car.new(car_params)
 
     if @car.save
-      params[:car][:image].each do |file|
+      params[:car][:images].each do |file|
         @car.car_photos.create!(:document => file)
       end
       render json: @car, status: :created, location: @car

@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :authenticate_user, except: [:car_bookings]
+  before_action :authenticate, except: [:car_bookings]
 
   #TODO:If the user has more than 100 bookings it will send out multiple arrays
   #data{array: {...}, array2{...}} This is sort of a bug and will cause the

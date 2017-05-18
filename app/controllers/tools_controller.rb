@@ -16,12 +16,9 @@ class ToolsController < ApplicationController
 
   # POST /tool
   def create
-    @tool = Tool.new(tool_params)
-
+    @tool = Tool.create(tool_params)
+    binding.pry
     if @tool.save
-      params[:tool][:image].each do |file|
-        @tool.tool_photos.create!(:document => file)
-      end
       render json: @tool, status: :created, location: @tool
     else
       render json: @tool.errors, status: :unprocessable_entity
@@ -31,6 +28,12 @@ class ToolsController < ApplicationController
   # PATCH/PUT /tool/1
   def update
     if @tool.update(tool_params)
+      binding.pry
+      if params[:tool][:image]
+        params[:tool][:image].each do |file|
+          @tool.tool_photos.create!(:document => file)
+        end
+      end
       render json: @tool
     else
       render json: @tool.errors, status: :unprocessable_entity
@@ -56,6 +59,6 @@ class ToolsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def tool_params
-      params.require(:tool).permit(:price, :tool_type, :category, :brand, :description, :condition, :location, :user_id)
+      params.require(:tool).permit(:price, :tool_type, :category, :brand, :description, :condition, :location, :user_id, :power)
     end
 end

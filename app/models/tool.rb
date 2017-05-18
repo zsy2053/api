@@ -8,7 +8,7 @@ class Tool < ApplicationRecord
   validates :category, presence: true
   validates :price, presence: true
   validates :brand, presence: true
-  validates :description, presence: true
   validates :condition, presence: true
   validates :location, presence: true
+  validates :power, presence: true
 end
