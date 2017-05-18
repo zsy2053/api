@@ -17,7 +17,6 @@ class ToolsController < ApplicationController
   # POST /tool
   def create
     @tool = Tool.create(tool_params)
-    binding.pry
     if @tool.save
       render json: @tool, status: :created, location: @tool
     else
@@ -28,7 +27,6 @@ class ToolsController < ApplicationController
   # PATCH/PUT /tool/1
   def update
     if @tool.update(tool_params)
-      binding.pry
       if params[:tool][:image]
         params[:tool][:image].each do |file|
           @tool.tool_photos.create!(:document => file)
@@ -46,7 +44,6 @@ class ToolsController < ApplicationController
   end
 
   def search_tools
-    binding.pry
     @tool = Tool.where(category: params[:tool][:search].order(created_at: :desc))
     render json: @tool
   end

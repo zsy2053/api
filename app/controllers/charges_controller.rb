@@ -3,7 +3,6 @@ class ChargesController < ApplicationController
 
   def create
     # Create a Stripe user
-    binding.pry
     @amount = params[:param][:amount]
     @description = params[:param][:description]
     @email = params[:param][:user_email]
@@ -28,11 +27,9 @@ class ChargesController < ApplicationController
 
   def stripe_activate
     @user = User.find(params[:id])
-    binding.pry
     customer = Stripe::Customer.create(
       :email => params[@User.email],
       :source  => @token
     )
-    binding.pry
   end
 end
