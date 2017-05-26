@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   # Get Tools
   resources :tools
-  get '/tools/search_tools' => 'tools#search_tools'
+  get '/tool/search_tools' => 'tools#search_tools'
   # Get Cars
   resources :cars
   get '/cars/user/:id' => 'cars#user_cars'
