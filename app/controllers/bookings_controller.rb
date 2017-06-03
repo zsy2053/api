@@ -24,7 +24,7 @@ class BookingsController < ApplicationController
     end
   end
 
-  # /bookings/tool/[the id of the car]
+  # /bookings/tool/[the id of the tool]
   def tool_bookings
     @bookings = Booking.where(tool_id: params[:id])
     render json: @bookings, :root => false
@@ -44,7 +44,7 @@ class BookingsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def booking_params
-    params.require(:booking).permit(:start_date ,:end_date ,:car_id, :renter_id)
+    params.require(:booking).permit(:start_date ,:end_date ,:tool_id, :renter_id, :price)
   end
 
 end

@@ -1,7 +1,7 @@
 class ToolPhoto < ApplicationRecord
-  belongs_to :tool#, counter_cache: true
+  belongs_to :tool
 
-  mount_uploader :image, ImageUploader
+  mount_base64_uploader :image, ImageUploader
 
   validates_processing_of :image
   validate :image_size_validation

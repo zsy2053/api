@@ -33,9 +33,8 @@ class ToolsController < ApplicationController
   # PATCH/PUT /tool/1
   def update
     if @tool.update(tool_params)
-      binding.pry
       if params[:tool][:image]
-        @tool.tool_photos.create!(:image => decode_photo_data(params[:tool][:image]))
+        @tool.tool_photos.create!(tool_photo_params)
       end
       render json: @tool
     else
@@ -49,19 +48,6 @@ class ToolsController < ApplicationController
   end
 
   private
-
-  #decode base64 data to an jpg image:
-   def decode_photo_data(photo_data)
-      data = StringIO.new(Base64.decode64(photo_data))
-
-      data.class.class_eval { attr_accessor :original_filename, :content_type }
-      data.original_filename = "upload.jpg"
-      data.content_type = "image/jpg"
-
-         # return decoded data
-      data
-   end
-
     # Use callbacks to share common setup or constraints between actions.
     def set_tool
       @tool = Tool.find(params[:id])
@@ -70,5 +56,9 @@ class ToolsController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def tool_params
       params.require(:tool).permit(:price, :tool_type, :category, :brand, :description, :condition, :location, :user_id, :power)
+    end
+
+    def tool_photo_params
+      params.require(:tool).permit(:image)
     end
 end
