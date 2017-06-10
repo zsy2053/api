@@ -34,4 +34,5 @@ Rails.application.routes.draw do
   # Charges
   resources :charges
   post 'charges/stripe_activate' => 'charges#stripe_activate'
+  post 'charges/create_charge' => 'charges#create_charge'
 end

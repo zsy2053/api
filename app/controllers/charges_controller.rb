@@ -1,35 +1,29 @@
 class ChargesController < ApplicationController
-  before_action :authenticate
+  before_action :authenticate, except: [:stripe_activate]
 
-  def create
-    # Create a Stripe user
-    @amount = params[:param][:amount]
-    @description = params[:param][:description]
-    @email = params[:param][:user_email]
-    @token = params[:param][:token][:id]
-    @date = params[:param][:date]
-    @cvc = params[:param][:cvc]
-    @cardNumber = params[:param][:cardNumber]
+  Stripe.api_key = "sk_test_kcPKsPn5ozwxBJySw5vPtZML"
 
+  def create_charge
+    temp_id = 'cus_112'
+    binding.pry
     charge = Stripe::Charge.create(
-      :customer    => customer.id,
-      :amount      => @amount,
-      :description => @description,
-      :currency    => 'cad',
-      :cvc         => @cvc,
-      :date        => @date,
-      :cardNumber  => @cardNumber
+      :amount => params[:charge][:amount],
+      :currency => "cad",
+      :customer => temp_id
+      # :customer => params[:stripe_id]
     )
-
-  rescue Stripe::CardError => e
-    render json: {errors: e.message}
   end
 
   def stripe_activate
-    @user = User.find(params[:id])
-    customer = Stripe::Customer.create(
-      :email => params[@User.email],
-      :source  => @token
+    user = User.find(params[:user][:id])
+      customer = Stripe::Customer.create(
+      :email => user.email,
+      :source  => params[:token]
     )
+    customer_id = customer.id
+    if customer
+      user.update!(:stripe_id => customer_id)
+      render json: {customer: customer}
+    end
   end
 end

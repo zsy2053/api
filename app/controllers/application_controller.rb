@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::API
   include Knock::Authenticable
-
   # Override Knock's very aggressive rescue
   # module Knock::Authenticable
   #  def define_current_entity_getter entity_class, getter_name
