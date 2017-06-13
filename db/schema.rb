@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170603213341) do
+ActiveRecord::Schema.define(version: 20170610151526) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -138,7 +138,7 @@ ActiveRecord::Schema.define(version: 20170603213341) do
     t.boolean  "register_complete"
     t.boolean  "has_booked",        default: false
     t.boolean  "valid_payment",     default: false
-    t.integer  "stripe_id"
+    t.string   "stripe_id"
   end
 
 end

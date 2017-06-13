@@ -9,6 +9,5 @@ class Tool < ApplicationRecord
   validates :price, presence: true
   validates :brand, presence: true
   validates :condition, presence: true
-  validates :location, presence: true
   validates :power, presence: true
 end
