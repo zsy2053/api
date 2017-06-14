@@ -44,6 +44,15 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (7.1.4)
+    azure-core (0.1.8)
+      faraday (~> 0.9)
+      faraday_middleware (~> 0.10)
+      nokogiri (~> 1.7)
+    azure-storage (0.12.1.preview)
+      azure-core (~> 0.1)
+      faraday (~> 0.9)
+      faraday_middleware (~> 0.10)
+      nokogiri (~> 1.7, < 1.8)
     bcrypt (3.1.11)
     builder (3.2.3)
     byebug (9.0.6)
@@ -74,6 +83,8 @@ GEM
       i18n (~> 0.5)
     faraday (0.12.0.1)
       multipart-post (>= 1.2, < 3)
+    faraday_middleware (0.11.0.1)
+      faraday (>= 0.7.4, < 1.0)
     ffi (1.9.18)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
@@ -181,6 +192,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers
+  azure-storage
   bcrypt (~> 3.1.7)
   cancan
   carrierwave

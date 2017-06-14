@@ -15,7 +15,7 @@ gem 'rails-erd'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 gem 'active_model_serializers'
-
+gem 'azure-storage'
 gem 'stripe'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -27,7 +27,7 @@ gem 'devise_token_auth'
 gem 'rack-cors'
 gem 'knock', '~> 1.4.2'
 # gem 'knock', git: "git@github.com:StevenNunez/knock.git", branch: "pluggable-resource"
-gem 'carrierwave' 
+gem 'carrierwave'
 gem 'carrierwave-base64'
 gem 'mini_magick', '~> 4.3'
 

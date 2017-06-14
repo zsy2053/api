@@ -1,6 +1,7 @@
 class ToolsController < ApplicationController
   before_action :set_tool, only: [:show, :update, :destroy]
   before_action :authenticate
+  require 'azure/storage'
 
 
   # GET /tool
@@ -33,9 +34,7 @@ class ToolsController < ApplicationController
   # PATCH/PUT /tool/1
   def update
     if @tool.update(tool_params)
-      if params[:tool][:image]
-        @tool.tool_photos.create!(tool_photo_params)
-      end
+
       render json: @tool
     else
       render json: @tool.errors, status: :unprocessable_entity
@@ -56,9 +55,5 @@ class ToolsController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def tool_params
       params.require(:tool).permit(:price, :tool_type, :category, :brand, :description, :condition, :location, :user_id, :power)
-    end
-
-    def tool_photo_params
-      params.require(:tool).permit(:image)
     end
 end
