@@ -1,10 +1,12 @@
 class ToolPhotosController < ApplicationController
+  before_action :authenticate
 
   def create
     blob_name = build_blob_name
     container = 'tool-images'
     blob_url = '/' + container + '/' + blob_name
-    upload_blob(params[:tool][:image], container, blob_name)
+    image = {data: Base64.decode64(params[:tool][:image][:data]), filesize: params[:tool][:image][:filesize], fileName: params[:tool][:image][:fileName]}
+    upload_blob(image, container, blob_name)
     @tool_photo = ToolPhoto.create(tool_id: params[:tool][:id], url: blob_url)
     if @tool_photo.save
       render json: @tool_photo, status: :created
@@ -23,7 +25,6 @@ class ToolPhotosController < ApplicationController
   end
 
   def upload_blob(image, container, blob_name)
-    decoded_image = Base64.decode64(image[:data])
     client = Azure::Storage::Client.create(:storage_account_name => "borostorage",
                                            :storage_access_key => "X9WSR1/ynmhy0FidgABmWGR3t5vmjgft46RJ7KAz5svGM1a7s4PbNy/Cq76dy3hbZZpESPr7OjktPoEhr+6x+A==")
     options = { :client => client }
