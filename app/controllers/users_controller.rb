@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   include ErrorSerializer
-  before_action :authenticate, except: [:create, :confirm_email, :email_activate, :quickSignup]
+  before_action :authenticate, except: [:create, :confirm_email, :email_activate]
 
   def index
     render json: User.all
@@ -14,15 +14,6 @@ class UsersController < ApplicationController
     user = User.create(user_params)
     if user.save
       # UserMailer.registration_confirmation(user).deliver
-      render json: {user: user}, status: 200, :root => false
-    else
-      render json: ErrorSerializer.serialize(user.errors), status: 422
-    end
-  end
-
-  def quickSignup
-    user = User.new(first_name: params[:user][:first_name], last_name: params[:user][:last_name], email: params[:user][:email])
-    if user.save
       render json: {user: user}, status: 200, :root => false
     else
       render json: ErrorSerializer.serialize(user.errors), status: 422

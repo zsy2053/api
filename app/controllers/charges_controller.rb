@@ -3,10 +3,9 @@ class ChargesController < ApplicationController
 
   def create_charge
     charge = Stripe::Charge.create(
-      :amount => params[:charge][:amount],
+      :amount => params[:charge],
       :currency => "cad",
-      :customer => temp_id
-      # :customer => params[:stripe_id]
+      :customer => params[:stripeId]
     )
   end
 
@@ -16,9 +15,8 @@ class ChargesController < ApplicationController
       :email => user.email,
       :source  => params[:token]
     )
-    customer_id = customer.id
     if customer
-      user.update!(:stripe_id => customer_id)
+      user.update!(:stripe_id => customer.id)
       render json: {customer: customer}
     end
   end
