@@ -4,7 +4,7 @@ class ToolPhotosController < ApplicationController
   def create
     blob_name = build_blob_name
     container = 'tool-images'
-    blob_url = '/' + container + '/' + blob_name
+    blob_url = container + '/' + blob_name
     image = {data: Base64.decode64(params[:tool][:image][:data]), filesize: params[:tool][:image][:filesize], fileName: params[:tool][:image][:fileName]}
     upload_blob(image, container, blob_name)
     @tool_photo = ToolPhoto.create(tool_id: params[:tool][:id], url: blob_url)
